@@ -11,8 +11,19 @@ function ToDoApp() {
   // function handleClick() {
   //   setNumber(number + 1);
   // }
-  const [tasks, setTasks] = useState(["Task 1", "Task 2", "Task 3", "Task 4"]);
+  const [tasks, setTasks] = useState([]);
+  const [taskName, setTaskName] = useState("");
 
+  function handleInputChange(event) {
+    // event => event này của ai || Kích hoạt trong ô input
+    //Lấy giá trị người dùng nhập => setTaskName Luư giá trị vào đấy
+    setTaskName(event.target.value);
+  }
+  function handleAddNewTask() {
+    //trước khi mà nhập vào thì cần biết lấy giá trị ô input ở đâu => taskName
+    setTasks([...tasks, taskName]); // lấy lại danh sách cũ task ở trên , và gán giá trị mới vào taskName
+    setTaskName(""); // reset lại ô trống ban đầu
+  }
   return (
     <div className="container">
       {/* <h1>{number}</h1>
@@ -24,8 +35,10 @@ function ToDoApp() {
           placeholder="Recipient's username"
           aria-label="Recipient's username"
           aria-describedby="basic-addon2"
+          value={taskName} //Gắn giá trị của taskName
+          onChange={handleInputChange}
         />
-        <button type="button" class="btn btn-dark">
+        <button type="button" class="btn btn-dark" onClick={handleAddNewTask}>
           Primary
         </button>
       </div>
@@ -40,9 +53,11 @@ function ToDoApp() {
         <tbody>
           {/* Cứ mỗi task nằm trong tasks chuyển thành 1 <tr></tr> */}
           {/* Map */}
-          {tasks.map((task) => (
+          {/* Mỗi 1 task là con của 1 tasks */}
+          {/* Index đếm count cho id do react hỗ trợ */}
+          {tasks.map((task, index) => (
             <tr key={task}>
-              <th scope="row">1</th>
+              <th scope="row">{index + 1}</th>
               <td>{task}</td>
             </tr>
           ))}
