@@ -7,6 +7,9 @@ function PetManagement() {
     JSON.parse(localStorage.getItem("pets")) || []
   );
   const [visible, setVisible] = useState(false);
+  const [deleteConfirmationVisible, setDeleteConfirmationVisible] =
+    useState(false);
+  const [petToDelete, setPetToDelete] = useState(null);
   const [form] = useForm();
 
   useEffect(() => {
@@ -43,11 +46,24 @@ function PetManagement() {
 
   const handleDelete = useCallback(
     (id) => {
-      const updatedDataSource = dataSource.filter((pet) => pet.id !== id);
-      setDataSource(updatedDataSource);
+      const pet = dataSource.find((pet) => pet.id === id);
+      setPetToDelete(pet);
+      setDeleteConfirmationVisible(true);
     },
     [dataSource]
   );
+
+  const handleConfirmDelete = () => {
+    const updatedDataSource = dataSource.filter(
+      (pet) => pet.id !== petToDelete.id
+    );
+    setDataSource(updatedDataSource);
+    setDeleteConfirmationVisible(false);
+  };
+
+  const handleCancelDelete = () => {
+    setDeleteConfirmationVisible(false);
+  };
 
   const handleSearch = useCallback(
     (value) => {
@@ -127,6 +143,17 @@ function PetManagement() {
             <Input type="number" min={0} />
           </Form.Item>
         </Form>
+      </Modal>
+      <Modal
+        title="Delete Confirmation"
+        visible={deleteConfirmationVisible}
+        onOk={handleConfirmDelete}
+        onCancel={handleCancelDelete}
+      >
+        <p>
+          Are you sure you want to delete the pet:{" "}
+          {petToDelete && petToDelete.name}?
+        </p>
       </Modal>
     </div>
   );
