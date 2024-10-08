@@ -1,0 +1,14 @@
+.caution-box{
+    border-radius: .8px;
+    
+    &__heading{
+        background-color: rgba(red, 0.2);
+        color: red;
+        text-align: center;
+        padding: 10px 0;
+    }
+    &__content{
+        background-color: rgba(red, 0.1);
+        padding: 10px ;
+    }
+}
