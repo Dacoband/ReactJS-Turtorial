@@ -1,0 +1,28 @@
+.account-detail {
+    border: 1px solid #ccc;
+    padding: 20px;
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 15px;
+    }
+  
+    .account-info {
+      p {
+        font-size: 1.1rem;
+        color: #555;
+        line-height: 1.6;
+        margin: 5px 0;
+  
+        strong {
+          color: #222;
+        }
+      }
+    }
+  }
+  
