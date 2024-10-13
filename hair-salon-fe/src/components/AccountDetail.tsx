@@ -18,7 +18,7 @@ const AccountDetail: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   const axiosInstance = axios.create({
-    baseURL: "https://localhost:7072/api",
+    baseURL: "https://api.vol-ka.studio/api",
   });
 
   useEffect(() => {

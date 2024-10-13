@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://api.hairsalon.vol-ka.studio',
+        target: 'https://api.vol-ka.studio',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       },
